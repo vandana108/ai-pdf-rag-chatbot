@@ -27,10 +27,14 @@ def index_pdf(
     pdf_bytes: bytes,
     filename: str,
     gemini_client: genai.Client,
+    session_namespace: str = "local",
 ) -> tuple[str, int, bool]:
-    """Extract, chunk, embed, and store a PDF. Return collection, count, reused."""
+    """Extract, chunk, embed, and store a PDF in a session-specific collection."""
     document_id = make_document_id(pdf_bytes)
-    collection_name = f"pdf{document_id[:20]}"
+    # Separate collections prevent visitors to a shared deployment from reusing
+    # another visitor's indexed collection, even when filenames overlap.
+    namespace = "".join(ch for ch in session_namespace if ch.isalnum())[:12] or "local"
+    collection_name = f"pdf{document_id[:16]}{namespace}"
     chroma_client = _get_chroma_client()
 
     # Reuse an existing index for the same exact PDF to avoid duplicate API calls.
