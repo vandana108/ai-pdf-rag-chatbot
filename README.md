@@ -1,6 +1,9 @@
 # AI PDF Question-Answering Chatbot (RAG)
 
-A learning-focused portfolio project that lets a user upload a text-based PDF, ask questions about it, and receive answers grounded in retrieved document chunks with source filename and page references.
+A Python and Streamlit application that lets users upload a text-based PDF, ask questions about its contents, and receive answers grounded in retrieved document passages with source filename and page references.
+
+**🚀 Live Demo:** [Open the AI PDF Chatbot](https://ai-pdf-rag-chatbot-5dlfoumwkmm7yoibj9r4ig.streamlit.app/)  
+**💻 Source Code:** [View this GitHub repository](https://github.com/vandana108/ai-pdf-rag-chatbot)
 
 ## Features
 
@@ -77,8 +80,8 @@ Open the local URL printed by Streamlit, usually `http://localhost:8501`. Keep t
 ## First test
 
 1. Use a non-confidential, text-based PDF smaller than 20 MB.
-2. Upload the PDF in the sidebar.
-3. Click **Index PDF** and wait for extraction, chunking, embedding, and indexing to finish.
+2. Upload the PDF in the main-page **Upload your PDF** section.
+3. Click **Index PDF and start chatting** and wait for extraction, chunking, embedding, and indexing to finish.
 4. Ask a question whose answer is explicitly present in the PDF.
 5. Expand **View retrieved source references** to inspect the source filename, page number, and retrieved text.
 
@@ -114,9 +117,9 @@ The default chat model is `gemini-3.5-flash-lite` and the embedding model is `ge
 
 Built as a hands-on learning project to understand document processing, embeddings, vector search, and Retrieval-Augmented Generation.
 
-## Deploy a public upload interface
+## Public live demo
 
-This repository contains the Streamlit application source. GitHub displays the source code; to give visitors a live browser-based upload interface, deploy the app with Streamlit Community Cloud.
+The application is hosted on Streamlit Community Cloud. Open the [Live Demo](https://ai-pdf-rag-chatbot-5dlfoumwkmm7yoibj9r4ig.streamlit.app/) to try the upload and question-answering interface. The source code remains available in this GitHub repository.
 
 1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) using GitHub.
 2. Choose **Create app**.
@@ -130,7 +133,7 @@ GEMINI_EMBEDDING_MODEL = "gemini-embedding-001"
 CHROMA_DB_DIR = "./chroma_db"
 ```
 
-5. Deploy the app and wait for the build to finish. Streamlit will provide a shareable `https://....streamlit.app` URL.
+5. After deployment, the public application URL is [https://ai-pdf-rag-chatbot-5dlfoumwkmm7yoibj9r4ig.streamlit.app/](https://ai-pdf-rag-chatbot-5dlfoumwkmm7yoibj9r4ig.streamlit.app/).
 
 The app reads local development settings from `.env` and deployed settings from Streamlit secrets. Never commit `.env` or a real API key.
 
