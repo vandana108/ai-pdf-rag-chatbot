@@ -113,3 +113,27 @@ The default chat model is `gemini-3.5-flash-lite` and the embedding model is `ge
 ---
 
 Built as a hands-on learning project to understand document processing, embeddings, vector search, and Retrieval-Augmented Generation.
+
+## Deploy a public upload interface
+
+This repository contains the Streamlit application source. GitHub displays the source code; to give visitors a live browser-based upload interface, deploy the app with Streamlit Community Cloud.
+
+1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) using GitHub.
+2. Choose **Create app**.
+3. Select repository `vandana108/ai-pdf-rag-chatbot`, branch `main`, and entrypoint `app.py`.
+4. Open **Advanced settings → Secrets** and add the key below (replace the placeholder locally in the Streamlit dashboard; do not commit it):
+
+```toml
+GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+GEMINI_CHAT_MODEL = "gemini-3.5-flash-lite"
+GEMINI_EMBEDDING_MODEL = "gemini-embedding-001"
+CHROMA_DB_DIR = "./chroma_db"
+```
+
+5. Deploy the app and wait for the build to finish. Streamlit will provide a shareable `https://....streamlit.app` URL.
+
+The app reads local development settings from `.env` and deployed settings from Streamlit secrets. Never commit `.env` or a real API key.
+
+### Public-demo safety
+
+This is a portfolio/demo app. The deployed app uses the owner's Gemini API key for visitor requests, so public use can consume the owner's API quota and may incur charges depending on the API account. Monitor usage and quotas. Do not invite uploads of confidential, personal, regulated, or employer documents. Uploaded text is sent to Google's Gemini API for embedding and answer generation. The first version uses local ChromaDB storage and is not designed as a secure multi-tenant document-storage service.
