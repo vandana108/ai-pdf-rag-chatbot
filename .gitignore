@@ -16,3 +16,6 @@ data/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Streamlit local secrets (keep deployment secrets in Streamlit Cloud settings)
+.streamlit/secrets.toml
